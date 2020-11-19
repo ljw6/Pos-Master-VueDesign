@@ -4,7 +4,7 @@
       <input type="text" placeholder="昵称" v-model="formMess.account">
       <input type="password" placeholder="密码" v-model="formMess.password">
     </form>
-    <a-button @click="login()" type="primary">登录</a-button>
+    <a-button type="primary"><router-link to="/login">登录</router-link></a-button>
     <button @click="test()">hello(不需要登录)</button>
     <button @click="test1()">测试1(need)</button>
     <button @click="test2()">测试2(need)</button>

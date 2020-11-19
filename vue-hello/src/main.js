@@ -5,7 +5,6 @@ import router from './router'
 import {Axios} from "@/Utils/axios"
 // import Antd from 'ant-design-vue'
 import {Button} from 'ant-design-vue'
-
 Vue.use(Button)
 
 Vue.config.productionTip = false
