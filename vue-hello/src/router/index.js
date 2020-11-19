@@ -6,6 +6,8 @@ import login from '@/components/login'
 Vue.use(Router)
 
 export default new Router({
+    //修改模式
+    mode: "history",
     routes : [
         {
             path: '/',
