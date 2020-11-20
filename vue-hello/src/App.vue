@@ -6,7 +6,16 @@
 
 <script>
 export default {
-  name: 'App'
+  el: "#app",
+  name: 'App',
+  mounted() {
+    this.hello();
+  },
+  methods: {
+    hello: function (){
+      alert("hello");
+    }
+  }
 }
 </script>
 
@@ -17,6 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  /*margin-top: 60px;*/
 }
 </style>

@@ -1,10 +1,8 @@
 <template>
-<div :class="preloads">
+<div class="preload">
   <div class="preloader_content">
     <div class="loader">
-      <span>P</span>
-      <span>O</span>
-      <span>S</span>
+      <span>{{preloads}}</span>
     </div>
   </div>
 </div>
@@ -12,10 +10,10 @@
 
 <script>
 export default {
-name: "login",
+  name: "login",
   data() {
     return {
-      preloads: null
+      preloads: "POS",
       }
   },
   mounted() {
