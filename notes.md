@@ -97,3 +97,7 @@
    2. axios
 
    3. store
+   
+   4. 使用webpack
+   
+   5. 使用http-vue-loader
