@@ -92,7 +92,7 @@
                 mode: "history",
             ```
 
-            
+            `redirect`属性·重定向页面，值为path
 
    2. axios
 
@@ -101,3 +101,21 @@
    4. 使用webpack
    
    5. 使用http-vue-loader
+   
+   导入包和暴露成员的方式
+   
+   1. node方法
+   
+      model.exports 或 exports暴露成员
+   
+      var  。。。 = require("name")导入
+   
+   2. ES6
+   
+      export default 或 export 暴露成员
+   
+      import ‘’ from ‘’ 或 import ‘’
+   
+      **export default 在一个模块中只能使用一次**
+   
+      export 方式暴露时，在导入时，只能使用`｛｝`按需导入

@@ -3,6 +3,7 @@
   <div class="preloader_content">
     <div class="loader">
       <span>{{preloads}}</span>
+      <a-button type="primary"><a-icon type="step-forward" /></a-button>
     </div>
   </div>
 </div>
@@ -16,14 +17,6 @@ export default {
       preloads: "POS",
       }
   },
-  mounted() {
-  this.preload();
-  },
-  methods: {
-    preload(){
-    this.preloads.fadeout("red",100);
-}
-  }
 }
 </script>
 
