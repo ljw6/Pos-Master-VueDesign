@@ -9,7 +9,10 @@ import {Result} from 'ant-design-vue'
 import {Menu} from 'ant-design-vue'
 import {Affix} from "ant-design-vue";
 import {Layout} from "ant-design-vue";
-
+import {BackTop} from "ant-design-vue";
+import {Badge} from "ant-design-vue";
+Vue.use(Badge)
+Vue.use(BackTop)
 Vue.use(Layout)
 Vue.use(Affix)
 Vue.use(Button)

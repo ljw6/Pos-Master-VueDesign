@@ -1,76 +1,66 @@
 <template>
-  <div id="app">
-    <a-layout id="components-layout-demo-top-side-2">
-      <a-layout-header class="header">
-        <div class="logo" />
-        <a-menu
-            theme="dark"
-            mode="horizontal"
-            :selectedKeys="selectedKeys1"
-            :style="{ lineHeight: '64px' }"
-        >
-          <a-menu-item key="1">
-            nav 1
-          </a-menu-item>
-          <a-menu-item key="2">
-            nav 2
-          </a-menu-item>
+  <div>
+  <a-layout id="components-layout-demo-side" style="min-height: 100vh">
+    <a-layout-sider v-model="collapsed" collapsible>
+      <div class="logo" ><span>{{collapsed?'Market':'二手市场'}}</span></div>
+      <a-menu theme="dark" :default-selected-keys="['1']" mode="inline">
+        <a-menu-item key="1">
+          <a-icon type="pie-chart" />
+          <span>Option 1</span>
+        </a-menu-item>
+        <a-menu-item key="2">
+          <a-icon type="desktop" />
+          <span>Option 2</span>
+        </a-menu-item>
+        <a-sub-menu key="sub1">
+          <span slot="title"><a-icon type="user" /><span>User</span></span>
           <a-menu-item key="3">
-            nav 3
+            Tom
           </a-menu-item>
-        </a-menu>
+          <a-menu-item key="4">
+            Bill
+          </a-menu-item>
+          <a-menu-item key="5">
+            Alex
+          </a-menu-item>
+        </a-sub-menu>
+        <a-sub-menu key="sub2">
+          <span slot="title"><a-icon type="team" /><span>Team</span></span>
+          <a-menu-item key="6">
+            Team 1
+          </a-menu-item>
+          <a-menu-item key="8">
+            Team 2
+          </a-menu-item>
+        </a-sub-menu>
+        <a-menu-item key="9">
+          <a-icon type="file" />
+          <span>File</span>
+        </a-menu-item>
+      </a-menu>
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header class="header">
+        <span style="position: relative; left: 1200px">
+          <a-badge :count="1" style="color: red">
+            <router-link to="/user">
+          <a-avatar style="color: #1088e9;background-color: white;right: 50px" :size="200">
+            <a-icon slot="icon" type="user"/>
+          </a-avatar>
+              </router-link>
+          </a-badge>
+        </span>
       </a-layout-header>
-      <a-layout>
-        <a-layout-sider width="200" style="background: #fff">
-          <a-menu
-              mode="inline"
-              :selectedKeys="selectedKeys2"
-              :openKeys="openKeys"
-              :style="{ height: '100%', borderRight: 0 }"
-          >
-            <a-sub-menu key="sub1">
-              <template #title>
-                <span>subnav 1</span>
-              </template>
-              <a-menu-item key="1">option1</a-menu-item>
-              <a-menu-item key="2">option2</a-menu-item>
-              <a-menu-item key="3">option3</a-menu-item>
-              <a-menu-item key="4">option4</a-menu-item>
-            </a-sub-menu>
-            <a-sub-menu key="sub2">
-              <template #title>
-                <span>subnav 2</span>
-              </template>
-              <a-menu-item key="5">option5</a-menu-item>
-              <a-menu-item key="6">option6</a-menu-item>
-              <a-menu-item key="7">option7</a-menu-item>
-              <a-menu-item key="8">option8</a-menu-item>
-            </a-sub-menu>
-            <a-sub-menu key="sub3">
-              <template #title>
-                <span>subnav 3</span>
-              </template>
-              <a-menu-item key="9">option9</a-menu-item>
-              <a-menu-item key="10">option10</a-menu-item>
-              <a-menu-item key="11">option11</a-menu-item>
-              <a-menu-item key="12">option12</a-menu-item>
-            </a-sub-menu>
-          </a-menu>
-        </a-layout-sider>
-        <a-layout style="padding: 0 24px 24px">
-          <a-breadcrumb style="margin: 16px 0">
-            <a-breadcrumb-item>Home</a-breadcrumb-item>
-            <a-breadcrumb-item>List</a-breadcrumb-item>
-            <a-breadcrumb-item>App</a-breadcrumb-item>
-          </a-breadcrumb>
-          <a-layout-content
-              :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
-          >
-            <router-view/>
-          </a-layout-content>
-        </a-layout>
-      </a-layout>
+      <router-view/>
     </a-layout>
+    <div id="components-back-top-demo-custom">
+      <a-back-top>
+        <div class="ant-back-top-inner">
+          UP
+        </div>
+      </a-back-top>
+    </div>
+  </a-layout>
   </div>
 </template>
 
@@ -80,21 +70,43 @@ export default {
   name: "app",
   data() {
     return {
-      selectedKeys1: ['2'],
-      selectedKeys2: ['1'],
       collapsed: false,
-      openKeys: ['sub1'],
     };
-  },
+  }
 };
 </script>
 
 <style scoped>
-#components-layout-demo-top-side-2 .logo {
-  width: 120px;
-  height: 31px;
+#components-layout-demo-side .logo {
+  height: 32px;
   background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
-  float: left;
+  margin: 16px;
+}
+#components-back-top-demo-custom .ant-back-top{
+  bottom: 50px;
+}
+#components-back-top-demo-custom .ant-back-top-inner {
+  /*position: fixed;*/
+  /*right: 50px;*/
+  /*bottom: 50px;*/
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #1088e9;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+}
+.logo{
+  text-align: center;
+  color: white;
+}
+.logo span{
+  vertical-align: middle;
+}
+.header{
+  background-color: #001529;
+  height: 45px;
 }
 </style>
