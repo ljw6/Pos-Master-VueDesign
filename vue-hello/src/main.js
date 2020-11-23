@@ -11,6 +11,9 @@ import {Affix} from "ant-design-vue";
 import {Layout} from "ant-design-vue";
 import {BackTop} from "ant-design-vue";
 import {Badge} from "ant-design-vue";
+import {Avatar} from "ant-design-vue";
+
+Vue.use(Avatar)
 Vue.use(Badge)
 Vue.use(BackTop)
 Vue.use(Layout)

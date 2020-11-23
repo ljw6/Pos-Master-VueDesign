@@ -17,7 +17,7 @@ module.exports={
     },
     pages:{
         User: {
-            entry: 'src/models/User/User.js',
+            entry: 'src/models/User/UserEntry.js',
             template: 'public/User.html',
             title: '用户主页'
         },

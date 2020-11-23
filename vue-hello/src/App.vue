@@ -43,11 +43,11 @@
       <a-layout-header class="header">
         <span style="position: relative; left: 1200px">
           <a-badge :count="1" style="color: red">
-            <router-link to="/user">
-          <a-avatar style="color: #1088e9;background-color: white;right: 50px" :size="200">
+            <a href="/User">
+          <a-avatar style="color: #1088e9;background-color: white;" size="large">
             <a-icon slot="icon" type="user"/>
           </a-avatar>
-              </router-link>
+              </a>
           </a-badge>
         </span>
       </a-layout-header>
@@ -107,6 +107,6 @@ export default {
 }
 .header{
   background-color: #001529;
-  height: 45px;
+  height: 55px;
 }
 </style>
