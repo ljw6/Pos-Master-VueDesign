@@ -7,60 +7,41 @@
         @collapse="onCollapse"
         @breakpoint="onBreakpoint"
     >
-      <div class="logo"><span>二手市场</span></div>
-      <a-menu theme="dark" mode="inline" :default-selected-keys="['4']">
+      <a href="/index"><div class="logo"><span>二手市场</span></div></a>
+      <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
+
         <a-menu-item key="1">
+          <router-link to="/userdetails">
           <a-icon type="user" />
-          <span class="nav-text">nav 1</span>
+          <span class="nav-text">用户中心</span></router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <a-icon type="video-camera" />
-          <span class="nav-text">nav 2</span>
+          <a-icon type="project" />
+          <span class="nav-text">全部订单</span>
         </a-menu-item>
         <a-menu-item key="3">
-          <a-icon type="upload" />
-          <span class="nav-text">nav 3</span>
+          <a-icon type="shopping" />
+          <span class="nav-text">我的已购</span>
         </a-menu-item>
         <a-menu-item key="4">
-          <a-icon type="user" />
-          <span class="nav-text">nav 4</span>
+          <a-icon type="money-collect" />
+          <span class="nav-text">我的已售</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header">
         <span style="position: relative; left: 1200px">
-          <a-badge :count="1" style="color: red" :overflow-count="10">
-            <router-link to="/user">
+          <a-badge :count="20" style="color: red" :overflow-count="10">
+            <a href="/User">
           <a-avatar style="color: #1088e9;background-color: white;" size="large">
             <a-icon slot="icon" type="user"/>
           </a-avatar>
-              </router-link>
+              </a>
           </a-badge>
         </span>
       </a-layout-header>
       <router-view/>
-      <a-layout>
-        <a-card hoverable style="width: 300px">
-          <template slot="actions">
-            <a-icon key="setting" type="setting"/>
-            <a-icon key="edit" type="edit" />
-            <a-icon key="ellipsis" type="ellipsis" />
-          </template>
-          <a-card-meta title="用户名" description="用户详细">
-            <a-avatar
-                slot="avatar" icon="user">
-            </a-avatar>
-          </a-card-meta>
-        </a-card>
-        <a-card hoverable style="width: auto" title="我的订单" :body-style="{width:'60px'}">
-          <template slot="actions">
-            <span id="icons"><a-icon key= "wallet" type="wallet"/></span>
-            <a-icon key= "shopping-cart" type="shopping-cart" />
-            <a-icon key="message" type="message" />
-          </template>
-        </a-card>
-      </a-layout>
     </a-layout>
     <div id="components-back-top-demo-custom">
       <a-back-top>
@@ -75,7 +56,10 @@
 
 <script>
 export default {
-name: "User",
+  name: "User",
+  mounted() {
+    this.preloadRoutes();
+  },
   methods: {
     onCollapse(collapsed, type) {
       console.log(collapsed, type);
@@ -83,7 +67,11 @@ name: "User",
     onBreakpoint(broken) {
       console.log(broken);
     },
+    preloadRoutes(){
+      this.$router.push({path:'/userdetails'});
+    }
   },
+
 }
 </script>
 
@@ -120,4 +108,19 @@ name: "User",
   background-color: #001529;
   height: 55px;
 }
+/*.orders .anticon{*/
+/*  */
+/*}*/
+.orders .ant-card-grid{
+  text-align: center;
+  width: 25%;
+}
+.userUtils{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+/*.userUtils .ant-card{*/
+/*  background-color: #497AC5;*/
+/*}*/
 </style>

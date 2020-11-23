@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Routers from 'vue-router'
-import User from './User.vue'
+// import User from './User.vue'
+import UserDetails from "./UserDetails";
 Vue.use(Routers)
 
 export default new Routers({
@@ -9,7 +10,12 @@ export default new Routers({
         {
             path: '/',
             name: 'User',
-            component: User
+            component: require('./UserDetails'),
+        },
+        {
+            path: '/userdetails',
+            name: 'userdetail',
+            component: UserDetails
         }
     ]
 })

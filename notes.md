@@ -93,9 +93,27 @@
             ```
 
             `redirect`属性·重定向页面，值为path
-
+         
+         3. 自动跳转路由
+      
+            用js代码实现自动跳转
+         
+            ```javascript
+            //mouted生命周期，页面加载完成执行
+            mounted() {
+                this.preloadRoutes();
+              },
+            methods:{
+                preloadRoutes(){
+                  this.$router.push({path:'url'});
+                }
+            }
+            ```
+         
+            
+   
    2. axios
-
+   
    3. store
    
    4. 使用webpack

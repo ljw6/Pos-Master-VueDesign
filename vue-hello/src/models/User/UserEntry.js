@@ -8,7 +8,11 @@ import {BackTop} from "ant-design-vue"
 import {Avatar} from "ant-design-vue"
 import {Icon} from "ant-design-vue"
 import {Card} from "ant-design-vue";
+import {Col} from "ant-design-vue"
+import {Row} from "ant-design-vue";
 
+Vue.use(Row)
+Vue.use(Col)
 Vue.use(Card)
 Vue.use(Layout)
 Vue.use(Badge)
