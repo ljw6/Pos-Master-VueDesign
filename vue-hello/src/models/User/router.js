@@ -13,6 +13,12 @@ function goodIdFn(route){
     }
 }
 
+function ordersTab(route){
+    return{
+        name: route
+    }
+}
+
 export default new Routers({
     mode: 'history',
     routes:[
@@ -35,6 +41,11 @@ export default new Routers({
             path:'/details/:goodsId',
             component: OrderDetails,
             props: goodIdFn
+        },
+        {
+            path: '/allOrders/:Tab',
+            component: AllOrders,
+            props: ordersTab
         }
 
     ]

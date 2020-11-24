@@ -16,7 +16,7 @@
           <span class="nav-text">用户中心</span></router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <router-link to="/allOrders">
+          <router-link to="/allOrders/all">
           <a-icon type="project" />
           <span class="nav-text">全部订单</span>
           </router-link>

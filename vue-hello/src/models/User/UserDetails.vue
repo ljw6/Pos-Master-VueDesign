@@ -19,22 +19,30 @@
         </a-col>
         <a-col flex="auto">
           <a-card hoverable style="width: auto" title="我的订单" class="orders">
+            <router-link to="/allOrders/waitForPay">
             <a-card-grid>
               <a-icon type="wallet"/>
               <p>待付款</p>
             </a-card-grid>
+            </router-link>
+            <router-link to="/allOrders/waitForComment">
             <a-card-grid>
               <a-icon type="message" />
-              <p>我的评价</p>
+              <p>待评价</p>
             </a-card-grid>
-            <a-card-grid>
-              <a-icon type="inbox" />
-              <p>待收货</p>
-            </a-card-grid>
+            </router-link>
+            <router-link to="/allOrders/waitForRecv">
+              <a-card-grid>
+                <a-icon type="inbox" />
+                <p>待收货</p>
+              </a-card-grid>
+            </router-link>
+            <router-link to="/allOrders/waitForAck">
             <a-card-grid>
               <a-icon type="right-circle" />
-              <p>全部订单</p>
+              <p>待确认</p>
             </a-card-grid>
+            </router-link>
           </a-card>
         </a-col>
       </a-row>

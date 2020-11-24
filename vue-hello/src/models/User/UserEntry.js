@@ -11,7 +11,9 @@ import {Card} from "ant-design-vue";
 import {Col} from "ant-design-vue"
 import {Row} from "ant-design-vue";
 import {List} from "ant-design-vue";
+import {Steps} from "ant-design-vue"
 
+Vue.use(Steps)
 Vue.use(List)
 Vue.use(Row)
 Vue.use(Col)
