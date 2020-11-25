@@ -16,16 +16,23 @@
             :data-source="datalist"
         >
           <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="items">
-            <router-link to="/details/123">
-              <img :src="item.img" style="height: 150px; width: 150px" />
-            </router-link>
-            <div class="goodsDetails">
-              <span>{{item.goodsName}}</span>
-              <br />
-              <span>{{item.price}}</span>
-              <br />
-              <span>{{item.saleDate}}</span>
-            </div>
+            <a slot="title" href="/">{{item.goodsName}}</a>
+            <a-row type="flex" justify="start">
+              <a-col :xs="6" :lg="4">
+                <router-link to="/details/123">
+                  <img :src="item.img" style="height: 150px; width: 150px" />
+                </router-link>
+              </a-col>
+              <a-col :xs="6" :lg="6">
+                <div class="goodsDetails">
+                  <span>{{item.goodsName}}</span>
+                  <br />
+                  <span>{{item.price}}</span>
+                  <br />
+                  <span>{{item.saleDate}}</span>
+                </div>
+              </a-col>
+            </a-row>
             <span slot="extra" style="margin-top: 20px" id="operations"
             ><router-link to="/details/456">详细信息</router-link></span
             >

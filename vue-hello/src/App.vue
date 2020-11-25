@@ -2,41 +2,65 @@
   <div>
   <a-layout id="components-layout-demo-side" style="min-height: 100vh">
     <a-layout-sider v-model="collapsed" collapsible>
-      <div class="logo" ><span>{{collapsed?'Market':'二手市场'}}</span></div>
+      <div class="logo" ><span>{{collapsed?'Market':'师大集市'}}</span></div>
       <a-menu theme="dark" :default-selected-keys="['1']" mode="inline">
-        <a-menu-item key="1">
-          <a-icon type="pie-chart" />
-          <span>Option 1</span>
-        </a-menu-item>
-        <a-menu-item key="2">
-          <a-icon type="desktop" />
-          <span>Option 2</span>
-        </a-menu-item>
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="user" /><span>User</span></span>
-          <a-menu-item key="3">
-            Tom
+          <span slot="title"><a-icon type="home" /><span>园区</span></span>
+          <a-menu-item key="zhou">
+            周园
           </a-menu-item>
-          <a-menu-item key="4">
-            Bill
+          <a-menu-item key="qin">
+            秦园
           </a-menu-item>
-          <a-menu-item key="5">
-            Alex
+          <a-menu-item key="han">
+            汉园
+          </a-menu-item>
+          <a-menu-item key="tang">
+            唐园
+          </a-menu-item>
+          <a-menu key="mei">
+            梅园
+          </a-menu>
+          <a-menu-item key="lan">
+            兰园
+          </a-menu-item>
+          <a-menu-item key="zhu">
+            竹园
+          </a-menu-item>
+          <a-menu-item key="ju">
+            菊园
+          </a-menu-item>
+          <a-menu-item key="home">
+            家属区
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub2">
-          <span slot="title"><a-icon type="team" /><span>Team</span></span>
-          <a-menu-item key="6">
-            Team 1
+        <span slot="title"><a-icon type="appstore" /><span>实物商品</span></span>
+          <a-menu-item key="Beauty">
+            美妆护肤
           </a-menu-item>
-          <a-menu-item key="8">
-            Team 2
+          <a-menu-item key="Study">
+            学习用具
+          </a-menu-item>
+          <a-menu-item key="Life">
+            生活用品
+          </a-menu-item>
+          <a-menu-item key="Electronic">
+            电子消费
           </a-menu-item>
         </a-sub-menu>
-        <a-menu-item key="9">
-          <a-icon type="file" />
-          <span>File</span>
-        </a-menu-item>
+        <a-sub-menu key="sub3">
+          <span slot="title"><a-icon type="user" /><span>校园服务</span></span>
+          <a-menu-item key="3">
+            跑腿
+          </a-menu-item>
+          <a-menu-item key="4">
+            辅导
+          </a-menu-item>
+          <a-menu-item key="5">
+            代做
+          </a-menu-item>
+        </a-sub-menu>
       </a-menu>
     </a-layout-sider>
     <a-layout>

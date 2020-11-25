@@ -7,7 +7,7 @@
         @collapse="onCollapse"
         @breakpoint="onBreakpoint"
     >
-      <a href="/index"><div class="logo"><span>二手市场</span></div></a>
+      <a href="/"><div class="logo"><span>师大集市</span></div></a>
       <a-menu theme="dark" mode="inline" :default-selected-keys="['1']">
 
         <a-menu-item key="1">
