@@ -33,7 +33,7 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header">
-        <span style="position: relative; left: 1200px">
+        <span style="position: absolute; right: 20px">
           <a-badge :count="20" style="color: red" :overflow-count="10">
             <a href="/User">
           <a-avatar style="color: #1088e9;background-color: white;" size="large">

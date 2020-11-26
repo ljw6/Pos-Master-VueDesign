@@ -12,7 +12,15 @@ import {Layout} from "ant-design-vue";
 import {BackTop} from "ant-design-vue";
 import {Badge} from "ant-design-vue";
 import {Avatar} from "ant-design-vue";
+import {Tabs} from "ant-design-vue";
+import {Collapse} from "ant-design-vue";
+import {Row} from "ant-design-vue";
+import {Col} from "ant-design-vue";
 
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Collapse)
+Vue.use(Tabs)
 Vue.use(Avatar)
 Vue.use(Badge)
 Vue.use(BackTop)

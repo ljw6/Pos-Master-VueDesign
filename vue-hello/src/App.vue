@@ -2,10 +2,10 @@
   <div>
   <a-layout id="components-layout-demo-side" style="min-height: 100vh">
     <a-layout-sider v-model="collapsed" collapsible>
-      <div class="logo" ><span>{{collapsed?'Market':'师大集市'}}</span></div>
+      <a href="/" ><div class="logo" ><span>{{collapsed?'Market':'师大集市'}}</span></div></a>
       <a-menu theme="dark" :default-selected-keys="['1']" mode="inline">
         <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="home" /><span>园区</span></span>
+          <span slot="title"><a-icon type="home" /><span>园区分布</span></span>
           <a-menu-item key="zhou">
             周园
           </a-menu-item>
@@ -18,9 +18,9 @@
           <a-menu-item key="tang">
             唐园
           </a-menu-item>
-          <a-menu key="mei">
+          <a-menu-item key="mei">
             梅园
-          </a-menu>
+          </a-menu-item>
           <a-menu-item key="lan">
             兰园
           </a-menu-item>
@@ -37,7 +37,7 @@
         <a-sub-menu key="sub2">
         <span slot="title"><a-icon type="appstore" /><span>实物商品</span></span>
           <a-menu-item key="Beauty">
-            美妆护肤
+            <router-link to="/lists">美妆护肤</router-link>
           </a-menu-item>
           <a-menu-item key="Study">
             学习用具
@@ -46,7 +46,7 @@
             生活用品
           </a-menu-item>
           <a-menu-item key="Electronic">
-            电子消费
+            消费电子
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub3">
@@ -65,7 +65,7 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header">
-        <span style="position: relative; left: 1200px">
+        <span style="position: absolute; right: 20px">
           <a-badge :count="1" style="color: red">
             <a href="/User">
           <a-avatar style="color: #1088e9;background-color: white;" size="large">
