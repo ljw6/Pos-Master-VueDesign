@@ -65,6 +65,16 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header">
+        <span style="position: absolute;right: 65px">
+          <a-dropdown>
+      <a-menu slot="overlay">
+        <a-menu-item key="1" @click="turnToPushGoods"> <a-icon type="user" />发布物品</a-menu-item>
+        <a-menu-item key="2"> <a-icon type="user" />发布任务</a-menu-item>
+      </a-menu>
+      <a-button style="margin-left: 8px"> 我要 <a-icon type="down" /> </a-button>
+    </a-dropdown>
+        </span>
+
         <span style="position: absolute; right: 20px">
           <a-badge :count="1" style="color: red">
             <a href="/User">
@@ -96,6 +106,14 @@ export default {
     return {
       collapsed: false,
     };
+  },
+  methods:{
+    handleMenuClick(){
+      console.log("click");
+    },
+    turnToPushGoods(){
+      self.location.href= '/doPush';
+    }
   }
 };
 </script>

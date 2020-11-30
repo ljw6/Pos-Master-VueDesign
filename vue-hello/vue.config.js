@@ -23,7 +23,13 @@ module.exports={
         },
         index:{
             entry: 'src/main.js',
-            template: 'public/index.html'
+            template: 'public/index.html',
+            title: '师大集市'
+        },
+        doPush:{
+            entry: 'src/models/Push/PushEntry.js',
+            template: 'public/Push.html',
+            title: '发布中心'
         }
     }
 }

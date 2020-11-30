@@ -18,7 +18,7 @@ name: "GoodsList",
   }
   },
   methods:{
-    PushTag(){
+    getTag(){
 
     }
   }

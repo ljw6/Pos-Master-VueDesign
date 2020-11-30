@@ -16,7 +16,9 @@ import {Tabs} from "ant-design-vue";
 import {Collapse} from "ant-design-vue";
 import {Row} from "ant-design-vue";
 import {Col} from "ant-design-vue";
+import {Dropdown} from "ant-design-vue";
 
+Vue.use(Dropdown)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Collapse)
