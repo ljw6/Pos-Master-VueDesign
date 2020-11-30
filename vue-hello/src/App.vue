@@ -68,8 +68,8 @@
         <span style="position: absolute;right: 65px">
           <a-dropdown>
       <a-menu slot="overlay">
-        <a-menu-item key="1" @click="turnToPushGoods"> <a-icon type="user" />发布物品</a-menu-item>
-        <a-menu-item key="2"> <a-icon type="user" />发布任务</a-menu-item>
+        <a-menu-item key="1" @click="turnToPushGoods('Pushgoods')"> <a-icon type="user" />发布物品</a-menu-item>
+        <a-menu-item key="2" @click="turnToPushGoods('Pushservices')"> <a-icon type="user" />发布任务</a-menu-item>
       </a-menu>
       <a-button style="margin-left: 8px"> 我要 <a-icon type="down" /> </a-button>
     </a-dropdown>
@@ -111,8 +111,8 @@ export default {
     handleMenuClick(){
       console.log("click");
     },
-    turnToPushGoods(){
-      self.location.href= '/doPush';
+    turnToPushGoods(url){
+      self.location.href= "/"+url;
     }
   }
 };

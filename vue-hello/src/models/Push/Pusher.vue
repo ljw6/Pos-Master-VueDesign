@@ -16,7 +16,7 @@
             <span class="nav-text">发布商品</span></router-link>
         </a-menu-item>
         <a-menu-item key="2">
-          <router-link to="/">
+          <router-link to="/Pushservices">
             <a-icon type="user" />
             <span class="nav-text">发布任务</span>
           </router-link>
@@ -51,12 +51,18 @@
 <script>
 export default {
 name: "Pusher",
+  mounted() {
+  // this.getDefaultPage();
+  },
   methods: {
     onCollapse(collapsed, type) {
       console.log(collapsed, type);
     },
     onBreakpoint(broken) {
       console.log(broken);
+    },
+    getDefaultPage(){
+      this.$router.push("/Pushgoods");
     }
 }
 }

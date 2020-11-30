@@ -10,7 +10,11 @@ import {Form} from "ant-design-vue";
 import {Input} from "ant-design-vue";
 import {Select} from "ant-design-vue";
 import {Icon} from "ant-design-vue";
+import {DatePicker} from "ant-design-vue";
+import {Upload} from "ant-design-vue";
 
+Vue.use(Upload)
+Vue.use(DatePicker)
 Vue.use(Icon)
 Vue.use(Input)
 Vue.use(Select)
