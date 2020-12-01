@@ -49,10 +49,13 @@
 </template>
 
 <script>
+
+const routerUrl = window.location.href.split("?")[1].split("=")[1];
+
 export default {
 name: "Pusher",
   mounted() {
-  // this.getDefaultPage();
+  this.getDefaultPage();
   },
   methods: {
     onCollapse(collapsed, type) {
@@ -62,7 +65,7 @@ name: "Pusher",
       console.log(broken);
     },
     getDefaultPage(){
-      this.$router.push("/Pushgoods");
+      this.$router.push(routerUrl);
     }
 }
 }

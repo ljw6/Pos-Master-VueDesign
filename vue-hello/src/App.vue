@@ -112,7 +112,7 @@ export default {
       console.log("click");
     },
     turnToPushGoods(url){
-      self.location.href= "/"+url;
+      self.location.href= "/doPush?routeUrl="+url;
     }
   }
 };
