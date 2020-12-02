@@ -6,6 +6,9 @@ import {Input} from "ant-design-vue";
 import {Icon} from "ant-design-vue";
 import {FormModel} from "ant-design-vue";
 import {Checkbox} from "ant-design-vue";
+import {Card} from "ant-design-vue";
+
+Vue.use(Card)
 Vue.use(Checkbox)
 Vue.use(Form)
 Vue.use(Icon)

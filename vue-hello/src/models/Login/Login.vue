@@ -1,58 +1,61 @@
 <template>
   <div class="all">
-  <a-form
-      id="components-form-demo-normal-login"
-      :form="form"
-      class="login-form"
-      @submit="handleSubmit"
-  >
-    <a-form-item>
-      <a-input
-          v-decorator="[
+    <a-card id="logincard" style="width: 360px">
+      <a-form
+          id="components-form-demo-normal-login"
+          :form="form"
+          class="login-form"
+          @submit="handleSubmit"
+      >
+        <a-form-item>
+          <a-input
+              v-decorator="[
           'userName',
           { rules: [{ required: true, message: 'Please input your username!' }] },
         ]"
-          placeholder="Username"
-      >
-        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
-      </a-input>
-    </a-form-item>
-    <a-form-item>
-      <a-input
-          v-decorator="[
+              placeholder="Username"
+          >
+            <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+          </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-input
+              v-decorator="[
           'password',
           { rules: [{ required: true, message: 'Please input your Password!' }] },
         ]"
-          type="password"
-          placeholder="Password"
-      >
-        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-      </a-input>
-    </a-form-item>
-    <a-form-item>
-      <a-checkbox
-          v-decorator="[
+              type="password"
+              placeholder="Password"
+          >
+            <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+          </a-input>
+        </a-form-item>
+        <a-form-item>
+          <a-checkbox
+              v-decorator="[
           'remember',
           {
             valuePropName: 'checked',
             initialValue: true,
           },
         ]"
-      >
-        Remember me
-      </a-checkbox>
-      <a class="login-form-forgot" href="">
-        Forgot password
-      </a>
-      <a-button type="primary" html-type="submit" class="login-form-button">
-        Log in
-      </a-button>
-      Or
-      <a href="">
-        register now!
-      </a>
-    </a-form-item>
-  </a-form>
+          >
+            Remember me
+          </a-checkbox>
+          <a class="login-form-forgot" href="">
+            Forgot password
+          </a>
+          <a-button type="primary" html-type="submit" class="login-form-button">
+            Log in
+          </a-button>
+          Or
+          <a href="">
+            register now!
+          </a>
+        </a-form-item>
+      </a-form>
+    </a-card>
+
   </div>
 </template>
 
@@ -85,14 +88,24 @@ name: "Login",
 .all{
   background: url("../../assets/back1.jpg");
   height: 745px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
 }
 #components-form-demo-normal-login .login-form {
-  max-width: 300px;
+  max-width: 200px;
 }
 #components-form-demo-normal-login .login-form-forgot {
   float: right;
 }
 #components-form-demo-normal-login .login-form-button {
   width: 100%;
+}
+#logincard {
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  margin-top: -150px;;
 }
 </style>

@@ -21,7 +21,7 @@ module.exports={
             template: 'public/User.html',
             title: '用户主页'
         },
-        Main:{
+        index:{
             entry: 'src/main.js',
             template: 'public/index.html',
             title: '师大集市'
@@ -31,7 +31,7 @@ module.exports={
             template: 'public/Push.html',
             title: '发布中心'
         },
-        index:{
+        login:{
             entry: 'src/models/Login/LoginEntry.js',
             template: 'public/login.html',
             title: '师大集市'
