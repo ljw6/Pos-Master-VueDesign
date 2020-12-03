@@ -29,11 +29,11 @@ public class ResController {
     public String UserRole(){
         return "User";
     }
-
-    @RequestMapping("/loginInfo")
-    public String loginInfo(){
-        return "Please Log in";
-    }
+//
+//    @RequestMapping("/loginInfo")
+//    public String loginInfo(){
+//        return "Please Log in";
+//    }
 
     @RequestMapping("/logoutSuccess")
     public String logoutSuccess(){

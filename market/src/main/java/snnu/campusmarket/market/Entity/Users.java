@@ -9,7 +9,7 @@ public class Users {
     @TableId(value = "id",type = IdType.AUTO)
     private int id;
     private String username;
-    private int phone;
+    private String phone;
     private String password;
 
     public Users() {
@@ -31,11 +31,11 @@ public class Users {
         this.username = username;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

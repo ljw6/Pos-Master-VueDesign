@@ -12,8 +12,9 @@ Axios.interceptors.request.use(config=>{
         config.data = formData
     }
 
-    if (localStorage.token){
-        config.headers.HTTP2_HEADER_AUTHORIZATION= localStorage.token
+    let token = localStorage.getItem('authorization');
+    if (token){
+        config.headers.Authorization= token
     }
     return config
 },

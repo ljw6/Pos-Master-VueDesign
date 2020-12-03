@@ -1,24 +1,25 @@
 <template>
   <div class="all">
     <a-card id="logincard" style="width: 360px">
-      <a-form
+      <a-form-model
           id="components-form-demo-normal-login"
           :form="form"
           class="login-form"
           @submit="handleSubmit"
       >
-        <a-form-item>
+        <a-form-model-item>
           <a-input
               v-decorator="[
           'userName',
           { rules: [{ required: true, message: 'Please input your username!' }] },
         ]"
               placeholder="Username"
+              v-model="formMess.account"
           >
             <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
           </a-input>
-        </a-form-item>
-        <a-form-item>
+        </a-form-model-item>
+        <a-form-model-item>
           <a-input
               v-decorator="[
           'password',
@@ -26,11 +27,12 @@
         ]"
               type="password"
               placeholder="Password"
+              v-model="formMess.password"
           >
             <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
           </a-input>
-        </a-form-item>
-        <a-form-item>
+        </a-form-model-item>
+        <a-form-model-item>
           <a-checkbox
               v-decorator="[
           'remember',
@@ -52,8 +54,8 @@
           <a href="">
             register now!
           </a>
-        </a-form-item>
-      </a-form>
+        </a-form-model-item>
+      </a-form-model>
     </a-card>
 
   </div>
@@ -68,15 +70,35 @@ name: "Login",
   data(){
   return{
     msg: 'denglu',
-    imgUrl: 'src/assets/back1.jpg',
+    formMess: {
+      "account": "",
+      "password": ""
+    }
   }
   },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFields((err, values) => {
+      this.form.validateFields((err) => {
         if (!err) {
-          console.log('Received values of form: ', values);
+          this.$http
+              .post("/login", {
+                username: this.formMess["account"],
+                password: this.formMess["password"]
+              })
+              .then(res => {
+                // 登录成功
+                console.log("登录成功！");
+                console.log(res.data);
+                /** 将Token保存到localStorage*/
+                const authorization = res.data.Authorization;
+                localStorage.token = authorization;
+              })
+              .catch(error => {
+                console.log("登录失败！");
+                console.log(error);
+                this.msg = error;
+              });
         }
       });
     },

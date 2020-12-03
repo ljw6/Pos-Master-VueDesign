@@ -7,7 +7,9 @@ import {Icon} from "ant-design-vue";
 import {FormModel} from "ant-design-vue";
 import {Checkbox} from "ant-design-vue";
 import {Card} from "ant-design-vue";
+import {Axios} from "@/Utils/axios"
 
+Vue.prototype.$http = Axios;
 Vue.use(Card)
 Vue.use(Checkbox)
 Vue.use(Form)

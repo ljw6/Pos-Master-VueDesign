@@ -14,6 +14,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import snnu.campusmarket.market.Authentication.JwtAuthenticationTokenFilter;
+import snnu.campusmarket.market.Authentication.MyLoginEntryPoint;
 import snnu.campusmarket.market.Authentication.MyLoginFailureHandler;
 import snnu.campusmarket.market.Authentication.MyLoginSuccessHandler;
 import snnu.campusmarket.market.Utils.MyAccessDeniedHandler;
@@ -27,6 +28,9 @@ public class MySecuConf extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyLoginFailureHandler myLoginFailureHandler;
+
+    @Autowired
+    MyLoginEntryPoint myLoginEntryPoint;
 
     @Autowired
     private MyAccessDeniedHandler handler;
@@ -50,9 +54,9 @@ public class MySecuConf extends WebSecurityConfigurerAdapter {
         //添加拦截器到验证之前
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
+        http.exceptionHandling().authenticationEntryPoint(myLoginEntryPoint);
+
         http.formLogin()
-                .loginPage("/loginInfo")
-                .loginProcessingUrl("/login")
                 .successHandler(myLoginSuccessHandler)
                 .failureHandler(myLoginFailureHandler);
         http.authorizeRequests()

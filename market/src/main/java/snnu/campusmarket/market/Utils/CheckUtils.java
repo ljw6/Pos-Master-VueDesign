@@ -4,18 +4,18 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import com.alibaba.fastjson.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 public class CheckUtils {
 
-    private static Logger logger = (Logger) LoggerFactory.getLogger(CheckUtils.class);
+    private static Logger logger =LoggerFactory.getLogger(CheckUtils.class);
     private static HashMap<String, Authentication> hashMap = new HashMap<>();
 
     /*

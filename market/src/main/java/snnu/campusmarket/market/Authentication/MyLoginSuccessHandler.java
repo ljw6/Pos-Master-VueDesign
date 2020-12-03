@@ -20,6 +20,7 @@ import java.util.Map;
 @Component("myLoginSuccessHandler")
 public class MyLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
+
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
@@ -27,13 +28,14 @@ public class MyLoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-//        response.setStatus(200);
+        response.setStatus(200);
         logger.info("登录成功");
         /*
         登录成功后的Token
         并将Authorization以json的形式返回到前端
          */
         String token = CheckUtils.generateToken(authentication);
+        System.out.println("****"+token);
         response.addHeader("Authorization",token);
         /*
         设置返回类型
