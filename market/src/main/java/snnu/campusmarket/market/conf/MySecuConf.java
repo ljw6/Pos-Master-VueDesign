@@ -1,77 +1,94 @@
 package snnu.campusmarket.market.conf;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import snnu.campusmarket.market.Authentication.JwtAuthenticationTokenFilter;
 import snnu.campusmarket.market.Authentication.MyLoginEntryPoint;
-import snnu.campusmarket.market.Authentication.MyLoginFailureHandler;
-import snnu.campusmarket.market.Authentication.MyLoginSuccessHandler;
-import snnu.campusmarket.market.Utils.MyAccessDeniedHandler;
-import snnu.campusmarket.market.service.UserLoginService;
+import snnu.campusmarket.market.service.JwtUserDetailsService;
 
 @Configuration
+@EnableWebSecurity
 public class MySecuConf extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private MyLoginSuccessHandler myLoginSuccessHandler;
-
-    @Autowired
-    private MyLoginFailureHandler myLoginFailureHandler;
 
     @Autowired
     MyLoginEntryPoint myLoginEntryPoint;
 
     @Autowired
-    private MyAccessDeniedHandler handler;
+    private JwtUserDetailsService userDetailsService;
 
     @Autowired
-    private UserLoginService userLoginService;
+    private JwtAuthenticationTokenFilter filter;
 
-    private PasswordEncoder passwordEncoder(){
+    @Value("${jwt.header}")
+    private String tokenHeader;
+
+    @Value("${jwt.route.authentication.path}")
+    private String path;
+
+//    @Autowired
+//    private MyAccessDeniedHandler handler;
+//
+//    @Autowired
+//    private UserLoginService userLoginService;
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userLoginService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //设置拦截器
-        JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter =new JwtAuthenticationTokenFilter();
-        //添加拦截器到验证之前
-        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        System.out.println("authenticationPath:"+path);
+        http.csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(myLoginEntryPoint)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().authorizeRequests().antMatchers(path,"/last_lists").permitAll()
+                .anyRequest().authenticated()
+                .and().addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class); //添加拦截器到验证之前
 
-        http.exceptionHandling().authenticationEntryPoint(myLoginEntryPoint);
-
-        http.formLogin()
-                .successHandler(myLoginSuccessHandler)
-                .failureHandler(myLoginFailureHandler);
-        http.authorizeRequests()
-                .antMatchers("/needAdminRole").hasRole("ADMIN")
-                .antMatchers("/needUserRole").hasRole("USER")
-                .antMatchers("/hello","/login","/loginInfo","/logoutSuccess")
-                .permitAll()
-                .anyRequest().authenticated();
+        http.headers()
+                .frameOptions().sameOrigin()
+                .cacheControl();
 
         http.logout().logoutSuccessUrl("/logoutSuccess");
 
-        http.csrf().disable();
         http.cors();
+    }
 
-        http.exceptionHandling().accessDeniedHandler(handler);
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring()
+                .antMatchers(HttpMethod.POST,path)
+                .and().ignoring()
+                .antMatchers(HttpMethod.GET,"/last_list");
     }
 
     @Bean

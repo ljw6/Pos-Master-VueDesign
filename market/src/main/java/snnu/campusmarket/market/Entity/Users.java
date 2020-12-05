@@ -1,32 +1,46 @@
 package snnu.campusmarket.market.Entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @TableName("users")
-public class Users {
+public class Users{
     @TableId(value = "id",type = IdType.AUTO)
-    private int id;
+    private String id;
     private String username;
     private String phone;
     private String password;
 
-    public Users() {
+
+    public Users(String id, String username, String phone, String password) {
+        this.id = id;
+        this.username = username;
+        this.phone = phone;
+        this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }
