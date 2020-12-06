@@ -82,8 +82,8 @@ name: "Login",
       this.form.validateFields((err) => {
         if (!err) {
           this.$http
-              .post("/login", {
-                username: this.formMess["account"],
+              .post("/auth", {
+                username: this.formMess["account"]+"_admin",
                 password: this.formMess["password"]
               })
               .then(res => {
@@ -91,8 +91,9 @@ name: "Login",
                 console.log("登录成功！");
                 console.log(res.data);
                 /** 将Token保存到localStorage*/
-                const authorization = res.data.Authorization;
+                const authorization = res.data.token;
                 localStorage.token = authorization;
+                console.log(authorization)
               })
               .catch(error => {
                 console.log("登录失败！");

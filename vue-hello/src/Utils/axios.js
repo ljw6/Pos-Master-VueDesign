@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const Axios = axios.create({
-    baseURL: 'http://localhost:8081',//后端服务端口
+    baseURL: 'http://localhost:8081/market',//后端服务端口
     timeout: 10000,
 })
 
@@ -14,7 +14,7 @@ Axios.interceptors.request.use(config=>{
 
     let token = localStorage.getItem('authorization');
     if (token){
-        config.headers.Authorization= token
+        config.headers.Authorization= "Bearer "+token
     }
     return config
 },
