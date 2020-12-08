@@ -10,16 +10,33 @@
 </template>
 
 <script>
+const LastList = [];
 export default {
 name: "GoodsList",
+  mounted() {
+    this.getLastList();
+  },
   data(){
   return{
     tag:[],
+    LastList,
   }
   },
   methods:{
-    getTag(){
-
+    getLastList(){
+      this.$http.get("/last_list").then(res =>{
+        let data = res.data
+        data.forEach((item)=>{
+          LastList.push({
+            goodsName: item.name,
+            description: item.description,
+            price: item.price,
+            area: item.area,
+            cate: item.catergery,
+            pic: item.pic
+          })
+        })
+      })
     }
   }
 }

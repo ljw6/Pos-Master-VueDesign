@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import snnu.campusmarket.market.Dao.GoodsDao;
@@ -18,6 +19,7 @@ import snnu.campusmarket.market.Entity.JwtResponse;
 import snnu.campusmarket.market.Entity.Users;
 import snnu.campusmarket.market.Utils.CheckUtils;
 import snnu.campusmarket.market.service.JwtUserDetailsService;
+import snnu.campusmarket.market.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -60,12 +62,15 @@ public class ResController {
         }
     }
 
+    @Autowired
+    UserService userService;
+
     @GetMapping("/token")
     public Users getAuthenticatedUser(HttpServletRequest request){
         String token = request.getHeader(tokenHeader).substring(7);
         String username= utils.getUsernameFromToken(token);
-        Users user = (Users) userDetailsService.loadUserByUsername(username);
-        return user;
+        User userdetials = (User) userDetailsService.loadUserByUsername(username);
+        return userService.getUserFromUserDetails(userdetials);
     }
 
     @GetMapping("/last_list")
