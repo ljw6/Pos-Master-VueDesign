@@ -17,7 +17,11 @@ import {Collapse} from "ant-design-vue";
 import {Row} from "ant-design-vue";
 import {Col} from "ant-design-vue";
 import {Dropdown} from "ant-design-vue";
+import {List} from "ant-design-vue";
+import {Card} from "ant-design-vue";
 
+Vue.use(Card)
+Vue.use(List)
 Vue.use(Dropdown)
 Vue.use(Row)
 Vue.use(Col)

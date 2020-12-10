@@ -8,7 +8,6 @@ import Index from '@/view/Index'
 import Lists from '@/view/GoodsList'
 
 Vue.use(Router)
-
 export default new Router({
     //修改模式
     mode: "history",
@@ -19,8 +18,8 @@ export default new Router({
             component: Index,
             children: [
                 {
-                  path: '/list', component: Lists,
-                },
+                    path: "/list",name:"lists",component: Lists,meta: {requiresAuth: true}
+                }
             ]
         },
         {
@@ -32,9 +31,16 @@ export default new Router({
             path: '/home',
             component: Home
         },
-        {
-            path: '/lists',
-            component: Lists,
-        }
-    ]
+    ],
+    active:function (transaction){
+        transaction.next()
+    }
 })
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+    return originalPush.call(this, location).catch(err => err);
+};
+const originalReplace = Router.prototype.replace;
+Router.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => err);
+};

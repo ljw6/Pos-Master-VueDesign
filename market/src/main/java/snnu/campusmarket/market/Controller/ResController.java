@@ -11,6 +11,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import snnu.campusmarket.market.Dao.GoodsDao;
 import snnu.campusmarket.market.Entity.Goods;
@@ -18,6 +19,7 @@ import snnu.campusmarket.market.Entity.JwtRequest;
 import snnu.campusmarket.market.Entity.JwtResponse;
 import snnu.campusmarket.market.Entity.Users;
 import snnu.campusmarket.market.Utils.CheckUtils;
+import snnu.campusmarket.market.service.GoodsService;
 import snnu.campusmarket.market.service.JwtUserDetailsService;
 import snnu.campusmarket.market.service.UserService;
 
@@ -73,11 +75,15 @@ public class ResController {
         return userService.getUserFromUserDetails(userdetials);
     }
 
-    @GetMapping("/last_list")
-    public List<Goods> getLastGoods(){
+    @Autowired
+    GoodsService goodsService;
 
-        List<Goods> last_list =  goodsDao.selectList(null);
-
+    @GetMapping("/last_list/{map}/{name}")
+    public List<Goods> getLastGoods(@PathVariable("map") String map,@PathVariable("name") String name){
+        int n = Integer.parseInt(name);
+//        List<Goods> last_list =  goodsDao.selectList(null);
+        List<Goods> last_list = goodsService.getGoodListWithWrapper(map,n);
+        System.out.println(map+"-->"+name);
         System.out.println(last_list);
         return last_list;
     }

@@ -37,16 +37,16 @@
         <a-sub-menu key="sub2">
         <span slot="title"><a-icon type="appstore" /><span>实物商品</span></span>
           <a-menu-item key="Beauty">
-            <router-link to="/lists">美妆护肤</router-link>
+            美妆护肤
+          </a-menu-item>
+          <a-menu-item key="Electronic">
+            消费电子
           </a-menu-item>
           <a-menu-item key="Study">
             学习用具
           </a-menu-item>
           <a-menu-item key="Life">
             生活用品
-          </a-menu-item>
-          <a-menu-item key="Electronic">
-            消费电子
           </a-menu-item>
         </a-sub-menu>
         <a-sub-menu key="sub3">

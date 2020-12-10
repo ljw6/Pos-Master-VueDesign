@@ -10,7 +10,7 @@ import java.sql.Blob;
 
 @TableName("goods")
 public class Goods {
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private String name;
     private String description;
@@ -18,10 +18,8 @@ public class Goods {
     private String area;
     private String catergery;
     private String pushId;
-    private byte[] pic;
 
-
-    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, byte[] pic) {
+    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -29,7 +27,15 @@ public class Goods {
         this.area = area;
         this.catergery = catergery;
         this.pushId = pushId;
-        this.pic = pic;
+    }
+
+    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.area = area;
+        this.catergery = catergery;
+        this.pushId = pushId;
     }
 
     public Long getId() {
@@ -56,6 +62,13 @@ public class Goods {
         this.description = description;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
     public String getArea() {
         return area;
@@ -79,22 +92,5 @@ public class Goods {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
-    }
-
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public byte[] getPic() {
-        return pic;
-    }
-
-    public void setPic(byte[] pic) {
-        this.pic = pic;
     }
 }
