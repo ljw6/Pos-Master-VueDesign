@@ -3,61 +3,61 @@
   <a-layout id="components-layout-demo-side" style="min-height: 100vh">
     <a-layout-sider v-model="collapsed" collapsible>
       <a href="/" ><div class="logo" ><span>{{collapsed?'Market':'师大集市'}}</span></div></a>
-      <a-menu theme="dark" :default-selected-keys="['1']" mode="inline">
-        <a-sub-menu key="sub1">
+      <a-menu theme="dark" :default-selected-keys="['1']" mode="inline" @click="handleMenuClick">
+        <a-sub-menu key="area" @titleClick="subClick">
           <span slot="title"><a-icon type="home" /><span>园区分布</span></span>
-          <a-menu-item key="zhou">
+          <a-menu-item key="1">
             周园
           </a-menu-item>
-          <a-menu-item key="qin">
+          <a-menu-item key="2">
             秦园
           </a-menu-item>
-          <a-menu-item key="han">
+          <a-menu-item key="3">
             汉园
           </a-menu-item>
-          <a-menu-item key="tang">
+          <a-menu-item key="4">
             唐园
           </a-menu-item>
-          <a-menu-item key="mei">
+          <a-menu-item key="5">
             梅园
           </a-menu-item>
-          <a-menu-item key="lan">
+          <a-menu-item key="6">
             兰园
           </a-menu-item>
-          <a-menu-item key="zhu">
+          <a-menu-item key="7">
             竹园
           </a-menu-item>
-          <a-menu-item key="ju">
+          <a-menu-item key="8">
             菊园
           </a-menu-item>
-          <a-menu-item key="home">
+          <a-menu-item key="9">
             家属区
           </a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="sub2">
+        <a-sub-menu key="catergery">
         <span slot="title"><a-icon type="appstore" /><span>实物商品</span></span>
-          <a-menu-item key="Beauty">
+          <a-menu-item key="1">
             美妆护肤
           </a-menu-item>
-          <a-menu-item key="Electronic">
+          <a-menu-item key="2">
             消费电子
           </a-menu-item>
-          <a-menu-item key="Study">
+          <a-menu-item key="3">
             学习用具
           </a-menu-item>
-          <a-menu-item key="Life">
+          <a-menu-item key="4">
             生活用品
           </a-menu-item>
         </a-sub-menu>
-        <a-sub-menu key="sub3">
+        <a-sub-menu key="service">
           <span slot="title"><a-icon type="user" /><span>校园服务</span></span>
-          <a-menu-item key="3">
+          <a-menu-item key="1">
             跑腿
           </a-menu-item>
-          <a-menu-item key="4">
+          <a-menu-item key="2">
             辅导
           </a-menu-item>
-          <a-menu-item key="5">
+          <a-menu-item key="3">
             代做
           </a-menu-item>
         </a-sub-menu>
@@ -99,7 +99,6 @@
 </template>
 
 <script>
-
 export default {
   name: "app",
   data() {
@@ -108,13 +107,25 @@ export default {
     };
   },
   methods:{
-    handleMenuClick(){
-      console.log("click");
+    handleMenuClick(val){
+      console.log(val.keyPath[0]);
+      console.log(val.keyPath[1]);
+      this.$router.replace({path:"/lists",query:{tabTag:val.keyPath[1],tagVal:val.keyPath[0]}});
+      this.$router.go(0);
     },
     turnToPushGoods(url){
-      self.location.href= "/doPush?routeUrl="+url;
+        self.location.href= "/doPush?routeUrl="+url;
+    },
+    subClick(val){
+      console.log(val);
     }
-  }
+  },
+  // watch:{
+  //   $route(to,from){
+  //     alert(to);
+  //     console.log(from);
+  //   }
+  // }
 };
 </script>
 

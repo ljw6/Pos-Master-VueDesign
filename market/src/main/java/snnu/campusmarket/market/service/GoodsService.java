@@ -20,4 +20,8 @@ public class GoodsService {
         List<Goods> list = goodsDao.selectList(wrapper);
         return list;
     }
+
+    public void saveNewGoods(Goods goods){
+        goodsDao.insert(goods);
+    }
 }

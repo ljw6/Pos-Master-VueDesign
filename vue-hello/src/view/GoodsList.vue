@@ -17,6 +17,9 @@
 const LastList=[];
 export default {
 name: "GoodsList",
+  // activated() {
+  //   this.getLastList();
+  // },
   mounted() {
     // this.LastList=[];
     this.getRouterTag();

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-import {store} from './store/store'
+import Store, {store} from './store/store'
+import obj from './Utils/filter'
 import router from './router'
 import {Axios} from "@/Utils/axios"
 import {Button} from 'ant-design-vue'
@@ -20,6 +21,7 @@ import {Dropdown} from "ant-design-vue";
 import {List} from "ant-design-vue";
 import {Card} from "ant-design-vue";
 
+Vue.use(obj)
 Vue.use(Card)
 Vue.use(List)
 Vue.use(Dropdown)
@@ -39,6 +41,16 @@ Vue.use(Menu)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios;
+let flag = true;
+
+router.beforeEach((to,from,next)=>{
+    to.query.timestamp = new Date().getTime();
+    if (to.path === from.path && Object.keys(to.query).length === 1 && !flag){
+        Store.dispatch("setRouterAlive",false);
+    }
+    next();
+    flag = false;
+})
 
 new Vue({
     render: h => h(App),

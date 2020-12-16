@@ -1,14 +1,14 @@
 import Vue from "vue"
 import Router from 'vue-router'
-// import Index from '@/components/index'
 import login from '@/components/login'
 import Home from '@/view/Home'
 import Index from '@/view/Index'
-// import User from '@/view/User'
 import Lists from '@/view/GoodsList'
 
 Vue.use(Router)
-export default new Router({
+
+export default new Router(
+    {
     //修改模式
     mode: "history",
     routes : [
@@ -31,10 +31,23 @@ export default new Router({
             path: '/home',
             component: Home
         },
+        {
+            path: "/lists",
+            name:"goodsList",
+            component: Lists,
+        }
     ],
     active:function (transaction){
         transaction.next()
-    }
+    },
+    // beforeEach:function (to,from,next){
+    //     to.query.timestamp = new Date().getTime();
+    //     if (to.path === from.path && Object.keys(to.query).length === 1 && !flag){
+    //         Store.dispatch("setRouterAlive",false);
+    //     }
+    //     next();
+    //     flag = false;
+    // }
 })
 const originalPush = Router.prototype.push;
 Router.prototype.push = function push(location) {

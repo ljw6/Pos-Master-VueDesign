@@ -1,5 +1,7 @@
 package snnu.campusmarket.market.Entity;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -18,6 +20,14 @@ public class Goods {
     private String area;
     private String catergery;
     private String pushId;
+    private String pushTime;
+
+    /*
+    用于接受前端传递的对象
+     */
+
+    public Goods() {
+    }
 
     public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId) {
         this.id = id;
@@ -36,6 +46,27 @@ public class Goods {
         this.area = area;
         this.catergery = catergery;
         this.pushId = pushId;
+    }
+
+    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, String pushTime) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.area = area;
+        this.catergery = catergery;
+        this.pushId = pushId;
+        this.pushTime = pushTime;
+    }
+
+    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId, String pushTime) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.area = area;
+        this.catergery = catergery;
+        this.pushId = pushId;
+        this.pushTime = pushTime;
     }
 
     public Long getId() {
@@ -92,5 +123,25 @@ public class Goods {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getPushTime() {
+        return pushTime;
+    }
+
+    public void setPushTime(String pushTime) {
+        this.pushTime = pushTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", area='" + area + '\'' +
+                ", catergery='" + catergery + '\'' +
+                ", pushId='" + pushId + '\'' +
+                '}';
     }
 }

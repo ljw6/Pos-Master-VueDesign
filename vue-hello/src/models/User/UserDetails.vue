@@ -10,7 +10,7 @@
               <a-icon key="edit" type="edit" />
               <a-icon key="ellipsis" type="ellipsis" />
             </template>
-            <a-card-meta title="用户名" description="用户详细">
+            <a-card-meta :title="usernames" :description=userPhone>
               <a-avatar
                   slot="avatar" icon="user">
               </a-avatar>
@@ -53,7 +53,21 @@
 
 <script>
 export default {
-name: "UserDetails"
+name: "UserDetails",
+  data(){
+  return{
+    usernames: "",
+    userPhone: "",
+  }
+  },
+  mounted() {
+    this.$http.get("/token").then(
+        res =>{
+          this.usernames = res.data.username;
+          this.userPhone = res.data.phone;
+        }
+    )
+  },
 }
 </script>
 

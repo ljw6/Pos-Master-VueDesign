@@ -12,8 +12,12 @@ import {Col} from "ant-design-vue"
 import {Row} from "ant-design-vue";
 import {List} from "ant-design-vue";
 import {Steps} from "ant-design-vue"
+import {Axios} from "@/Utils/axios"
+import {Button} from "ant-design-vue";
 
+Vue.prototype.$http = Axios;
 Vue.use(Steps)
+Vue.use(Button)
 Vue.use(List)
 Vue.use(Row)
 Vue.use(Col)

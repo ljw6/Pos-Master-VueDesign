@@ -83,7 +83,7 @@ name: "Login",
         if (!err) {
           this.$http
               .post("/auth", {
-                username: this.formMess["account"]+"_admin",
+                username: this.formMess["account"],
                 password: this.formMess["password"]
               })
               .then(res => {
@@ -93,7 +93,7 @@ name: "Login",
                 /** 将Token保存到localStorage*/
                 const authorization = res.data.token;
                 localStorage.authorization = authorization;
-                history.back();
+                history.go(-1);
               })
               .catch(error => {
                 if (error.response.status === 401){

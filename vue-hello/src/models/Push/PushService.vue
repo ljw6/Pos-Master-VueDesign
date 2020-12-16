@@ -50,9 +50,6 @@
           </a-select-option>
         </a-select>
       </a-form-item>
-      <a-form-item label="时间">
-        <a-date-picker id="dataPush" @change="onChange" />
-      </a-form-item>
       <a-form-item label="描述">
         <a-textarea id="description" placeholder="请输入服务描述" :rows="5"/>
       </a-form-item>

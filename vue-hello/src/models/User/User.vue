@@ -33,6 +33,8 @@
     </a-layout-sider>
     <a-layout>
       <a-layout-header class="header">
+        <a-button style="margin-left: 8px" @click="logout"> 退出登录 </a-button>
+
         <span style="position: absolute; right: 20px">
           <a-badge :count="20" style="color: red" :overflow-count="10">
             <a href="/User">
@@ -57,8 +59,17 @@
 </template>
 
 <script>
+// const user=null;
+
 export default {
   name: "User",
+  beforeCreate() {
+    let token = localStorage.getItem('authorization');
+    if(token == null){
+      alert("请登录");
+      self.location.href = "/login";
+    }
+  },
   mounted() {
     this.preloadRoutes();
   },
@@ -71,6 +82,10 @@ export default {
     },
     preloadRoutes(){
       this.$router.push({path:'/userdetails'});
+    },
+    logout(){
+      localStorage.clear();
+      self.location.href = "/";
     }
   },
 

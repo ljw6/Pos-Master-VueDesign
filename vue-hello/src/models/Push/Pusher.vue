@@ -54,7 +54,15 @@ const routerUrl = window.location.href.split("?")[1].split("=")[1];
 
 export default {
 name: "Pusher",
+  beforeCreate() {
+    let token = localStorage.getItem('authorization');
+    if(token == null){
+      alert("请登录");
+      self.location.href = "/login";
+    }
+  },
   mounted() {
+  this.getUserFromToken();
   this.getDefaultPage();
   },
   methods: {
@@ -66,6 +74,14 @@ name: "Pusher",
     },
     getDefaultPage(){
       this.$router.push(routerUrl);
+    },
+    getUserFromToken(){
+      this.$http.get("/token").then(
+          res =>{
+            const userid = res.data.id;
+            localStorage.userid = userid;
+          }
+      )
     }
 }
 }
