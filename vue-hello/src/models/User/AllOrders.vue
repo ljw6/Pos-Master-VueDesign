@@ -42,7 +42,7 @@
       <div v-else-if="orderKey === 'waitForPay'">
         <span>待付款</span>
       </div>
-      <div v-else-if="orderKey === 'waitForRecv'">
+      <div v-else-if="orderKey === 'waitForSend'">
         <span>待收货</span>
       </div>
       <div v-else-if="orderKey === 'waitForComment'">
@@ -90,8 +90,8 @@ export default {
           tab: '待付款',
         },
         {
-          key: 'waitForRecv',
-          tab: '待收货',
+          key: 'waitForSend',
+          tab: '待发货',
         },
         {
           key: 'waitForAck',

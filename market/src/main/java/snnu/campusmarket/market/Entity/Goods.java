@@ -1,14 +1,10 @@
 package snnu.campusmarket.market.Entity;
 
-import cn.hutool.core.date.DateTime;
-import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.math.BigDecimal;
 import java.lang.Long;
-
-import java.sql.Blob;
 
 @TableName("goods")
 public class Goods {
@@ -21,6 +17,8 @@ public class Goods {
     private String catergery;
     private String pushId;
     private String pushTime;
+    private String byId;
+    private String saleState;
 
     /*
     用于接受前端传递的对象
@@ -29,26 +27,7 @@ public class Goods {
     public Goods() {
     }
 
-    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.area = area;
-        this.catergery = catergery;
-        this.pushId = pushId;
-    }
-
-    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.area = area;
-        this.catergery = catergery;
-        this.pushId = pushId;
-    }
-
-    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, String pushTime) {
+    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, String pushTime,String saleState) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -57,9 +36,10 @@ public class Goods {
         this.catergery = catergery;
         this.pushId = pushId;
         this.pushTime = pushTime;
+        this.saleState = saleState;
     }
 
-    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId, String pushTime) {
+    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId, String pushTime,String saleState) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -67,6 +47,33 @@ public class Goods {
         this.catergery = catergery;
         this.pushId = pushId;
         this.pushTime = pushTime;
+        this.saleState = saleState;
+    }
+
+
+    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, String pushTime, String byId, String saleState) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.area = area;
+        this.catergery = catergery;
+        this.pushId = pushId;
+        this.pushTime = pushTime;
+        this.byId = byId;
+        this.saleState = saleState;
+    }
+
+    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId, String pushTime, String byId, String saleState) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.area = area;
+        this.catergery = catergery;
+        this.pushId = pushId;
+        this.pushTime = pushTime;
+        this.byId = byId;
+        this.saleState = saleState;
     }
 
     public Long getId() {
@@ -133,15 +140,35 @@ public class Goods {
         this.pushTime = pushTime;
     }
 
+    public String getById() {
+        return byId;
+    }
+
+    public void setById(String byId) {
+        this.byId = byId;
+    }
+
+    public String getSaleState() {
+        return saleState;
+    }
+
+    public void setSaleState(String saleState) {
+        this.saleState = saleState;
+    }
+
     @Override
     public String toString() {
         return "Goods{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", area='" + area + '\'' +
                 ", catergery='" + catergery + '\'' +
                 ", pushId='" + pushId + '\'' +
+                ", pushTime='" + pushTime + '\'' +
+                ", byId='" + byId + '\'' +
+                ", saleState='" + saleState + '\'' +
                 '}';
     }
 }

@@ -23,11 +23,11 @@
         </a-menu-item>
         <a-menu-item key="3">
           <a-icon type="shopping" />
-          <span class="nav-text">我的已购</span>
+          <span class="nav-text">我购</span>
         </a-menu-item>
         <a-menu-item key="4">
           <a-icon type="money-collect" />
-          <span class="nav-text">我的已售</span>
+          <span class="nav-text">我售</span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>

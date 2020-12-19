@@ -35,6 +35,10 @@ module.exports={
             entry: 'src/models/Login/LoginEntry.js',
             template: 'public/login.html',
             title: '师大集市'
+        },
+        goods:{
+            entry: 'src/models/Goods/GoodsEntry.js',
+            template: 'public/Goods.html',
         }
     }
 }

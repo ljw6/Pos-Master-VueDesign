@@ -4,6 +4,8 @@
 >
   <a-list-item slot="renderItem" slot-scope="item">
     <a-card :title="item.goodsName">
+      {{item.time}}发布<br>
+      {{item.saleState}}
       发布自{{item.area}}<br>
       分类：{{item.cate}}<br>
       商品描述：{{item.description}}<br>
@@ -39,13 +41,19 @@ name: "GoodsList",
         let data = res.data
         console.log(data);
         data.forEach((item)=>{
-          Lists.push({
-            goodsName: item.name,
-            description: item.description,
-            price: item.price,
-            area: item.area,
-            cate: item.catergery,
-          })
+          if (this.setSaleState(item.saleState) != null) {
+            Lists.push({
+              goodsName: item.name,
+              description: item.description,
+              price: item.price,
+              area: item.area,
+              cate: item.catergery,
+              time: item.pushTime.substr(0, 10),
+              isBrought: item.isBrought,
+              byId: item.byId,
+              saleState: this.setSaleState(item.saleState)
+            })
+          }
         })
       });
       this.LastList = Lists;
@@ -58,7 +66,18 @@ name: "GoodsList",
       this.tag =tabTag.substring(2,tabTag.length-1);
       this.tagVal = tabNum.substring(2);
       this.getLastList();
-    }
+    },
+    setSaleState(state){
+      if (state === "push"){
+        return "未售出";
+      }
+      else if(state === "waitForPay"){
+        return "正在交易";
+      }
+      else {
+        return null;
+      }
+    },
   }
 }
 </script>

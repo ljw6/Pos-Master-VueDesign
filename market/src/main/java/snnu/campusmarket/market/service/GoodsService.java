@@ -24,4 +24,8 @@ public class GoodsService {
     public void saveNewGoods(Goods goods){
         goodsDao.insert(goods);
     }
+
+    public void updateGoodsSaleState(Goods goods){
+        goodsDao.updateById(goods);
+    }
 }
