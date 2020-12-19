@@ -92,14 +92,16 @@ name: "Login",
                 console.log(res.data);
                 /** 将Token保存到localStorage*/
                 const authorization = res.data.token;
-                localStorage.authorization = authorization;
+                this.$token.setLocalStorage("authorization",authorization);
+                // localStorage.authorization = authorization;
                 history.go(-1);
               })
               .catch(error => {
-                if (error.response.status === 401){
+                // if (error.response.status === 401){
+                  console.log(error);
                   alert("登录失败，用户名或密码错误！请重新登录");
                   location.reload();
-                }
+                // }
               });
         }
       });

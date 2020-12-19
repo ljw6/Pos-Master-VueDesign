@@ -1,4 +1,5 @@
 import axios from 'axios'
+import filter from "./filter";
 
 export const Axios = axios.create({
     baseURL: 'http://localhost:8081/market',//后端服务端口
@@ -12,9 +13,9 @@ Axios.interceptors.request.use(config=>{
         config.data = formData
     }
 
-    let token = localStorage.getItem('authorization');
+    let token = filter.getLocalStorage('authorization');
     if (token){
-        config.headers.Authorization= "Bearer "+token
+        config.headers.Authorization= "Bearer "+token;
     }
     return config
 },

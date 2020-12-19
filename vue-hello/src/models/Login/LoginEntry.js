@@ -8,8 +8,10 @@ import {FormModel} from "ant-design-vue";
 import {Checkbox} from "ant-design-vue";
 import {Card} from "ant-design-vue";
 import {Axios} from "@/Utils/axios"
+import TokenTime from '@/Utils/filter'
 
 Vue.prototype.$http = Axios;
+Vue.prototype.$token = TokenTime;
 Vue.use(Card)
 Vue.use(Checkbox)
 Vue.use(Form)
