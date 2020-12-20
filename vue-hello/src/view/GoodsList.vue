@@ -3,7 +3,7 @@
   :data-source="LastList"
 >
   <a-list-item slot="renderItem" slot-scope="item">
-    <a-card :title="item.goodsName">
+    <a-card :title="item.goodsName" @click="turnToDetails(item.goodsId)">
       {{item.time}}发布<br>
       {{item.saleState}}
       发布自{{item.area}}<br>
@@ -43,6 +43,7 @@ name: "GoodsList",
         data.forEach((item)=>{
           if (this.setSaleState(item.saleState) != null) {
             Lists.push({
+              goodsId: item.id,
               goodsName: item.name,
               description: item.description,
               price: item.price,
@@ -78,6 +79,9 @@ name: "GoodsList",
         return null;
       }
     },
+    turnToDetails(id){
+      self.location.href = "/goods?id="+id;
+    }
   }
 }
 </script>

@@ -19,6 +19,7 @@ public class Goods {
     private String pushTime;
     private String byId;
     private String saleState;
+    private String byTime;
 
     /*
     用于接受前端传递的对象
@@ -51,7 +52,7 @@ public class Goods {
     }
 
 
-    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, String pushTime, String byId, String saleState) {
+    public Goods(Long id, String name, String description, BigDecimal price, String area, String catergery, String pushId, String pushTime, String byId, String saleState,String byTime) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -62,9 +63,10 @@ public class Goods {
         this.pushTime = pushTime;
         this.byId = byId;
         this.saleState = saleState;
+        this.byTime = byTime;
     }
 
-    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId, String pushTime, String byId, String saleState) {
+    public Goods(Long id, String name, BigDecimal price, String area, String catergery, String pushId, String pushTime, String byId, String saleState,String byTime) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -74,6 +76,7 @@ public class Goods {
         this.pushTime = pushTime;
         this.byId = byId;
         this.saleState = saleState;
+        this.byTime = byTime;
     }
 
     public Long getId() {
@@ -154,6 +157,14 @@ public class Goods {
 
     public void setSaleState(String saleState) {
         this.saleState = saleState;
+    }
+
+    public String getByTime() {
+        return byTime;
+    }
+
+    public void setByTime(String byTime) {
+        this.byTime = byTime;
     }
 
     @Override

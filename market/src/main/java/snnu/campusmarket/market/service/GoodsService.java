@@ -28,4 +28,23 @@ public class GoodsService {
     public void updateGoodsSaleState(Goods goods){
         goodsDao.updateById(goods);
     }
+
+    public Goods getGoodsById(Long id){
+        return goodsDao.selectById(id);
+    }
+
+    public List<Goods> getGoodsByById(String id){
+        QueryWrapper<Goods> wrapper = new QueryWrapper<>();
+        wrapper.eq("by_id",id);
+        List<Goods> list = goodsDao.selectList(wrapper);
+        return list;
+    }
+
+    public List<Goods> getGoodsByState(String id,String state){
+        QueryWrapper<Goods> wrapper = new QueryWrapper<>();
+        wrapper.eq("by_id",id);
+        wrapper.eq("sale_state",state);
+        List<Goods> list = goodsDao.selectList(wrapper);
+        return list;
+    }
 }

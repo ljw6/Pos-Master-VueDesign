@@ -45,7 +45,7 @@ export default {
     }
 },
     getLocalStorage(key) {
-    let exp = 60 * 60 * 5; // 5小时的秒数
+    let exp = 60 * 60 * 24*1000; // 一天的秒数
     let newValue = null;
     if(localStorage.getItem(key)) {
         let vals = localStorage.getItem(key); // 获取本地存储的值

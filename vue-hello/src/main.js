@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Store, {store} from './store/store'
+import {store} from './store/store'
 import obj from './Utils/filter'
 import router from './router'
 import {Axios} from "@/Utils/axios"
@@ -41,16 +41,6 @@ Vue.use(Menu)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = Axios;
-let flag = true;
-
-router.beforeEach((to,from,next)=>{
-    to.query.timestamp = new Date().getTime();
-    if (to.path === from.path && Object.keys(to.query).length === 1 && !flag){
-        Store.dispatch("setRouterAlive",false);
-    }
-    next();
-    flag = false;
-})
 
 new Vue({
     render: h => h(App),

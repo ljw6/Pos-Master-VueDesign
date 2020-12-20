@@ -18,4 +18,9 @@ public class UserService {
         Users users = userDao.selectOne(wrapper);
         return users;
     }
+
+    public String getUserNameById(String id){
+        Users user = userDao.selectById(id);
+        return user.getUsername();
+    }
 }

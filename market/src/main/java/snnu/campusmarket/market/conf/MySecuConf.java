@@ -88,7 +88,7 @@ public class MySecuConf extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers(HttpMethod.POST,path)
                 .and().ignoring()
-                .antMatchers(HttpMethod.GET,"/last_list/**","/resources/**","/static/**","/pushGoods/**");
+                .antMatchers(HttpMethod.GET,"/last_list/**","/resources/**","/static/**","/getGoodsById/**","/getUserById/**");
     }
 
     @Bean
