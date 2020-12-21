@@ -47,4 +47,15 @@ public class GoodsService {
         List<Goods> list = goodsDao.selectList(wrapper);
         return list;
     }
+
+    public List<Goods> getGoodsByPusher(String id){
+        QueryWrapper<Goods> wrapper = new QueryWrapper<>();
+        wrapper.eq("push_id",id);
+        List<Goods> list = goodsDao.selectList(wrapper);
+        return list;
+    }
+
+    public void delGoodsById(Long id){
+        goodsDao.deleteById(id);
+    }
 }

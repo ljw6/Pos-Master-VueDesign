@@ -3,14 +3,11 @@ import Routers from 'vue-router'
 import UserDetails from "./UserDetails";
 import AllOrders from "./AllOrders";
 import OrderDetails from "./OrderDetails";
+import BuyCar from "./BuyCar";
+import myPushs from "./myPushs";
+import Router from "vue-router";
 
 Vue.use(Routers)
-
-function goodIdFn(route){
-    return {
-        name: parseInt(route.params.int)
-    }
-}
 
 function ordersTab(route){
     return{
@@ -37,15 +34,27 @@ export default new Routers({
             component: AllOrders
         },
         {
-            path:'/details/:goodsId',
+            path:'/details',
+            name: "Details",
             component: OrderDetails,
-            props: goodIdFn
         },
         {
             path: '/allOrders/:Tab',
             component: AllOrders,
             props: ordersTab
+        },
+        {
+            path: '/car',
+            component: BuyCar,
+        },
+        {
+            path: "/myPush",
+            component: myPushs
         }
 
     ]
 })
+const originalReplace = Router.prototype.replace;
+Router.prototype.replace = function replace(location) {
+    return originalReplace.call(this, location).catch(err => err);
+};

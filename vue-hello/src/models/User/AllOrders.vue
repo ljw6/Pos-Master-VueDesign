@@ -15,7 +15,7 @@
             :pagination="pagination"
             :data-source="datalist"
         >
-          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="1">
+          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="all">
             <a slot="title" href="/">{{item.goodsName}}</a>
             <a-row type="flex" justify="start">
               <a-col :xs="6" :lg="4">
@@ -33,8 +33,7 @@
                 </div>
               </a-col>
             </a-row>
-            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;">
-              <router-link to="/details/456">详细信息</router-link></span>
+           <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;" @click="getDetail">详细信息</span>
           </a-list-item>
         </a-list>
       </div>
@@ -46,7 +45,7 @@
             :pagination="pagination"
             :data-source="datalist"
         >
-          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="2">
+          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="waitForPay">
             <a slot="title" href="/">{{item.goodsName}}</a>
             <a-row type="flex" justify="start">
               <a-col :xs="6" :lg="4">
@@ -64,9 +63,7 @@
                 </div>
               </a-col>
             </a-row>
-            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;"
-            ><router-link to="/details/456">详细信息</router-link></span
-            >
+            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;" @click="getDetail">详细信息</span>
           </a-list-item>
         </a-list>
       </div>
@@ -78,7 +75,7 @@
             :pagination="pagination"
             :data-source="datalist"
         >
-          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="3">
+          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="waitForSend">
             <a slot="title" href="/">{{item.goodsName}}</a>
             <a-row type="flex" justify="start">
               <a-col :xs="6" :lg="4">
@@ -96,9 +93,7 @@
                 </div>
               </a-col>
             </a-row>
-            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;"
-            ><router-link to="/details/456">详细信息</router-link></span
-            >
+            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;" @click="getDetail">详细信息</span>
           </a-list-item>
         </a-list>
       </div>
@@ -110,7 +105,7 @@
           :pagination="pagination"
           :data-source="datalist"
       >
-        <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="4">
+        <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="waitForComment">
           <a slot="title" href="/">{{item.goodsName}}</a>
           <a-row type="flex" justify="start">
             <a-col :xs="6" :lg="4">
@@ -128,9 +123,7 @@
               </div>
             </a-col>
           </a-row>
-          <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;"
-          ><router-link to="/details/456">详细信息</router-link></span
-          >
+          <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;" @click="getDetail">详细信息</span>
         </a-list-item>
       </a-list>
       </div>
@@ -142,7 +135,7 @@
             :pagination="pagination"
             :data-source="datalist"
         >
-          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="5">
+          <a-list-item slot="renderItem" key="item.title" slot-scope="item" id="waitForAck">
             <a slot="title" href="/">{{item.goodsName}}</a>
             <a-row type="flex" justify="start">
               <a-col :xs="6" :lg="4">
@@ -160,9 +153,7 @@
                 </div>
               </a-col>
             </a-row>
-            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;"
-            ><router-link to="/details/456">详细信息</router-link></span
-            >
+            <span slot="extra" style="margin-top: 20px;display: flex;align-items: center;" @click="getDetail(item)">详细信息</span>
           </a-list-item>
         </a-list>
       </div>
@@ -209,12 +200,14 @@ export default {
         }
       ],
       orderKey: 'all',
+      page: "all",
       userId: null,
     }
   },
   methods:{
     onTabChange(key,type) {
       this[type] = key;
+      this.page = key;
       this.datalist=[];
       if (key === "all"){
         this.getGoodsList()
@@ -244,6 +237,9 @@ export default {
                           goodsName: item.name,
                           price: item.price,
                           saleDate: item.byTime,
+                          goodsId: item.id,
+                          saleState: item.saleState,
+                          goodsDescription: item.description,
                         }
                     )
                   })
@@ -263,6 +259,9 @@ export default {
                               goodsName: item.name,
                               price: item.price,
                               saleDate: item.byTime,
+                              goodsId: item.id,
+                              saleState: item.saleState,
+                              goodsDescription: item.description,
                             }
                         )
                       })
@@ -283,6 +282,10 @@ export default {
           }
       )
       return id;
+    },
+    getDetail(item){
+      console.log(this.page);
+      this.$router.push({name:"Details",params:{goods:item}});
     }
   }
 }

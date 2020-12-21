@@ -23,11 +23,11 @@
         </a-menu-item>
         <a-menu-item key="3">
           <a-icon type="shopping" />
-          <span class="nav-text">我购</span>
+          <span class="nav-text"> 我的购物车 </span>
         </a-menu-item>
         <a-menu-item key="4">
           <a-icon type="money-collect" />
-          <span class="nav-text">我售</span>
+          <span class="nav-text"> <router-link to="/myPush">我售</router-link> </span>
         </a-menu-item>
       </a-menu>
     </a-layout-sider>
@@ -45,7 +45,7 @@
           </a-badge>
         </span>
       </a-layout-header>
-      <router-view/>
+      <router-view v-if="isRouter"/>
     </a-layout>
     <div id="components-back-top-demo-custom">
       <a-back-top>
@@ -60,9 +60,18 @@
 
 <script>
 // const user=null;
-
 export default {
   name: "User",
+  data(){
+    return{
+      isRouter: true,
+    }
+  },
+  provide(){
+    return {
+      reload:this.reloads
+    }
+  },
   beforeCreate() {
     let token = localStorage.getItem('authorization');
     if(token == null){
@@ -86,6 +95,10 @@ export default {
     logout(){
       localStorage.clear();
       self.location.href = "/";
+    },
+    reloads(){
+      this.isRouter = false
+      this.$nextTick(() => (this.isRouter = true))
     }
   },
 

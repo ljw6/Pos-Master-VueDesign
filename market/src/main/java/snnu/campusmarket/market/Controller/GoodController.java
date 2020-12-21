@@ -57,7 +57,19 @@ public class GoodController {
 
     @GetMapping("/getGoodsByerId/{id}/{state}")
     public List<Goods> getGoodsListByState(@PathVariable String id,@PathVariable String state){
+        System.out.println(state);
         System.out.println(goodsService.getGoodsByState(id,state));
         return goodsService.getGoodsByState(id,state);
+    }
+
+    @GetMapping("/getGoodsByPusher/{id}")
+    public List<Goods> getGoodsByPusher(@PathVariable String id){
+        System.out.println("pusher=>"+id);
+        return goodsService.getGoodsByPusher(id);
+    }
+
+    @DeleteMapping("/delGoodsById/{id}")
+    public void delGoodsById(@PathVariable Long id){
+        goodsService.delGoodsById(id);
     }
 }

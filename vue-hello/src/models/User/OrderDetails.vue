@@ -9,34 +9,49 @@
     <a-step title="Waiting" description="This is a description." />
     <a-step title="hhh" description="hhh"/>
   </a-steps>
-  <a-card :title="goodsId" style="height: 800px">
+  <a-card :title="goods.saleDate" style="height: 800px">
     <a-card-grid style="width: 100%;text-align: left">
-      goodsName
+      {{goods.goodsName}}
     </a-card-grid>
     <a-card-grid style="width: 100%;">
-      goodsDetail
+      {{goods.price}}
     </a-card-grid>
     <a-card-grid style="width: 100%;">
-      operations
+      {{goods.goodsDescription}}
     </a-card-grid>
   </a-card>
+  <div style="text-align: center" v-if="goods.saleState === 'waitForPay'">
+    <a-button> 付款 </a-button>
+    <a-button> 取消订单 </a-button>
+  </div>
+  <div style="text-align: center;" v-else-if="goods.saleState === 'waitForAck'">
+    <a-button> 确认收货 </a-button>
+    <a-button> 拒绝收货 </a-button>
+  </div>
+  <div style="text-align: center;" v-else-if="goods.saleState === 'waitForComment'">
+    <a-button> 去评价 </a-button>
+    <a-button> 取消评价 </a-button>
+  </div>
 </div>
 </template>
 
 <script>
 export default {
-name: "OrderDetails",
-  data(){
-  return{
-    goodsId:null
-  }
+  name: "OrderDetails",
+  data() {
+    return {
+      goods: null,
+      page: null,
+      // saleState: null,
+    }
   },
   mounted() {
     this.getId();
+    // this.doOper();
   },
-  methods:{
-    getId(){
-      this.goodsId = this.$route.params["goodsId"];
+  methods: {
+    getId() {
+      this.goods = this.$route.params.goods;
     },
   }
 }
